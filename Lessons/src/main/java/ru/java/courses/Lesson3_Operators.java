@@ -20,7 +20,20 @@ public class Lesson3_Operators {
     public static String task1(int i, String str) {
         // свой код нужно писать тут
         // следующую строку можно удалять
-        return null;
+        String result = str;
+        if (i>0) {
+            result = str + String.valueOf(i);
+        } else if (i<0) {
+            result =  String.valueOf(i) +str;
+        } else {
+            result = "0";
+        }
+        if (result.length() <= 10) {
+            return result;
+        } else {
+            return result.substring(0,10);
+        }
+
     }
 
     /**
@@ -39,7 +52,13 @@ public class Lesson3_Operators {
     public static boolean task2(int i) {
         // свой код нужно писать тут
         // следующую строку можно удалять
-        return false;
+        i--;
+        if (i>100 || i<30) {
+            i = i + 1000;
+        } else if (i > 0 && i % 2 == 0){
+            i = i - 1000;
+        }
+        return i<0 ? false: true;
     }
 
 

@@ -21,9 +21,12 @@ public class Lesson10_CollectionsLists {
     public static List<String> task1(List<Integer> source) {
         List<String> result = new ArrayList<>(source.size());
         Collections.sort(source);
-        result.add(String.valueOf(source.get(0)));
-        for(int i = 1; i < source.size(); i++){
-            if(!source.get(i).equals(source.get(i-1))){
+        //result.add(String.valueOf(source.get(0)));
+        for(int i = 0; i < source.size(); i++){
+            if(i == 0){
+                result.add(String.valueOf(source.get(i)));
+            }
+            else if(!source.get(i).equals(source.get(i-1))){
                 result.add(String.valueOf(source.get(i)));
             }
         }

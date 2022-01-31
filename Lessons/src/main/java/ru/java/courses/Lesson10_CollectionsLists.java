@@ -21,11 +21,17 @@ public class Lesson10_CollectionsLists {
     public static List<String> task1(List<Integer> source) {
         List<String> result = new ArrayList<>(source.size());
         Collections.sort(source);
-        int i = 0;
+        result.add(String.valueOf(source.get(0)));
+        for(int i = 1; i < source.size(); i++){
+            if(!source.get(i).equals(source.get(i-1))){
+                result.add(String.valueOf(source.get(i)));
+            }
+        }
+        /*int i = 0;
         while (i < source.size()){
             result.add(String.valueOf(source.get(i)));
             i = source.lastIndexOf(source.get(i))==i ? i+1 : source.lastIndexOf(source.get(i)) + 1;
-        }
+        }*/
         /*result.add(String.valueOf(source.get(0)));
         for(int i = 1; i < source.size(); i++){
             if(!source.get(i).equals(source.get(i-1))){

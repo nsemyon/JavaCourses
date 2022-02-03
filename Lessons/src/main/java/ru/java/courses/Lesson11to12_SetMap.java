@@ -1,17 +1,7 @@
 package ru.java.courses;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 import javax.swing.tree.TreeCellEditor;
 
@@ -65,10 +55,14 @@ public class Lesson11to12_SetMap {
      * 4. Возвращаем последнего пользователя
      */
     public static User task1(Collection<User> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
-
-        return null;
+        TreeSet<User> users = new TreeSet<>(new Comparator<>() {
+            @Override
+            public int compare(User o1, User o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        users.addAll(source);
+        return users.last();
     }
 
     /**
@@ -79,10 +73,11 @@ public class Lesson11to12_SetMap {
      * 4. Вернуть количество записей в справочнике
      */
     public static int task2(Collection<User> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
-
-       return 0;
+        HashMap<String, String> users = new HashMap<>();
+        for(User item : source){
+            users.put(item.getPhone(), null);
+        }
+       return users.size();
     }
 
 
@@ -97,10 +92,22 @@ public class Lesson11to12_SetMap {
      * Нумерация полок начинается с единицы!
      */
     public static Map task3(Collection<String> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
-
-        return null;
+        final int shelfCount = 5;
+        HashMap<Integer, List<String>> shelf = new HashMap<>();
+        if (source.size() > 0) {
+            List<String> books = new ArrayList<>();
+            books.addAll(source);
+            Collections.sort(books);
+            int booksPerShelf = books.size() / shelfCount;
+            int firstBook;
+            int lastBook = 0;
+            for (int i = 0; i < shelfCount; i++) {
+                firstBook = lastBook;
+                lastBook = i < shelfCount - booksPerShelf ? lastBook + booksPerShelf : lastBook + booksPerShelf + 1;
+                shelf.put(i + 1, books.subList(firstBook, lastBook));
+            }
+        }
+        return shelf;
     }
 
 
@@ -110,8 +117,10 @@ public class Lesson11to12_SetMap {
      * 5. Вернуть справочник [название книги -> номер полки]
      */
     public static Map task4(Map<Integer, String> source) {
-        // свой код нужно писать тут
-        // следующую строку можно удалять
-        return null;
+        HashMap<String, Integer> result = new HashMap<>();
+        for (int key : source.keySet()){
+            result.put(source.get(key), key);
+        }
+        return result;
     }
 }
